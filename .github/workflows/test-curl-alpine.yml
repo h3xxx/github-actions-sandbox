@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: alpine-latest
+    runs-on: ubuntu-latest
 
     env:
       OUTPUT_VALUE: ${{ github.event.inputs.output_value }}
