@@ -23,4 +23,4 @@ jobs:
           sudo apt-get install jq -y
       - name: Process response
         run: |
-          curl -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
+          curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
