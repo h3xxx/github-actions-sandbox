@@ -1,0 +1,26 @@
+# Test workflow
+
+name: Test workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_value:
+        description: 'Output value:'
+        required: true
+        default: 'country'
+
+jobs:
+  build:
+    runs-on: alpine-latest
+
+    env:
+      OUTPUT_VALUE: ${{ github.event.inputs.output_value }}
+
+    steps:
+      - name: Install jq
+        run: |
+          sudo apt-get install jq -y
+      - name: Process response
+        run: |
+          curl -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
