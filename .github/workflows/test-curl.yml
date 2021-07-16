@@ -23,4 +23,14 @@ jobs:
           sudo apt-get install jq -y
       - name: Process response
         run: |
+          echo "step 1"
+          echo "$OUTPUT_VALUE"
+          echo "${{ env.OUTPUT_VALUE }}"
+          echo "$GITHUB_ENV"
+          echo "OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/usa/uk/")" >> $GITHUB_ENV
+          echo "OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/ /%20/")" >> $GITHUB_ENV
+          echo "step 2"
+          echo "$OUTPUT_VALUE"
+          echo "${{ env.OUTPUT_VALUE }}"
+          echo "$GITHUB_ENV"
           curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
