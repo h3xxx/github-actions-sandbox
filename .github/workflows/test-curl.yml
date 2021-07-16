@@ -9,6 +9,10 @@ on:
         description: 'Output value:'
         required: true
         default: 'country'
+      test_value:
+        description: 'Test value:'
+        required: true
+        default: 'new usa'        
 
 jobs:
   build:
@@ -16,6 +20,7 @@ jobs:
 
     env:
       OUTPUT_VALUE: ${{ github.event.inputs.output_value }}
+      TEST_VALUE: ${{ github.event.inputs.test_value }}
 
     steps:
       - name: Install jq
@@ -23,14 +28,7 @@ jobs:
           sudo apt-get install jq -y
       - name: Process response
         run: |
-          echo "step 1"
-          echo "$OUTPUT_VALUE"
-          echo "${{ env.OUTPUT_VALUE }}"
-          cat $GITHUB_ENV
-          OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/usa/uk/")
-          OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/ /%20/")
-          echo "step 2"
-          echo "$OUTPUT_VALUE"
-          echo "${{ env.OUTPUT_VALUE }}"
-          cat $GITHUB_ENV
-          curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r ".$OUTPUT_VALUE"
+          TEST_VALUE=$(echo "$TEST_VALUE" | sed "s/usa/uk/")
+          TEST_VALUE=$(echo "$TEST_VALUE" | sed "s/ /%20/")
+          echo "testValue: $TEST_VALUE"
+          curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
