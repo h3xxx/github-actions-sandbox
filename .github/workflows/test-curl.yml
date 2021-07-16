@@ -27,10 +27,10 @@ jobs:
           echo "$OUTPUT_VALUE"
           echo "${{ env.OUTPUT_VALUE }}"
           cat $GITHUB_ENV
-          echo "OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/usa/uk/")" >> $GITHUB_ENV
-          echo "OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/ /%20/")" >> $GITHUB_ENV
+          OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/usa/uk/")
+          OUTPUT_VALUE=$(echo "$OUTPUT_VALUE" | sed "s/ /%20/")
           echo "step 2"
           echo "$OUTPUT_VALUE"
           echo "${{ env.OUTPUT_VALUE }}"
           cat $GITHUB_ENV
-          curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r .${{ env.OUTPUT_VALUE }}
+          curl -s -X GET "https://api.myip.com" -H  "accept: */*" | jq -r ".$OUTPUT_VALUE"
