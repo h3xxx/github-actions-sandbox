@@ -7,6 +7,14 @@ on:
         description: 'Default message'
         required: false
 
+  workflow_call:
+    inputs:
+      message:
+        description: 'Default message'
+        required: false
+        type: string
+
+
 #  workflow_run:
 #    workflows: [ "Parent workflow" ]
 #    type:
