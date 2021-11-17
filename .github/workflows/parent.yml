@@ -1,0 +1,11 @@
+name: Parent workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print message
+        run: echo "Hi, I'm a parent workflow."
