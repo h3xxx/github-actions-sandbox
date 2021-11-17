@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MESSAGE: ${{ github.event.inputs.message}}
+      MESSAGE: ${{ github.event.inputs.message}} || ${{ inputs.message }}
 
     steps:
       - name: print message
