@@ -1,11 +1,11 @@
 name: Child workflow
 
 on:
-#  workflow_dispatch:
-#    inputs:
-#      message:
-#        description: 'Default message'
-#        required: false
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Default message'
+        required: false
 
   workflow_run:
     workflows: [ "Parent workflow" ]
@@ -15,6 +15,10 @@ on:
 jobs:
   execute:
     runs-on: ubuntu-latest
+
+    env:
+      MESSAGE: ${{ github.event.inputs.message}}
+
     steps:
       - name: print message
-        run: echo "Hi, I'm a child workflow."
+        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE }}"
