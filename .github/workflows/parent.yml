@@ -1,7 +1,9 @@
 name: Parent workflow
 
 on:
-  workflow_dispatch
+  # https://jasonet.co/posts/scheduled-actions/
+  schedule:
+    - cron: "*/30 * * * *"
 
 jobs:
   execute:
