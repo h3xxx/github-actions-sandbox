@@ -2,6 +2,10 @@ name: Child workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: 'Default message'
+        required: false
 
   workflow_run:
     workflows: [ "Parent workflow" ]
