@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       message:
-        description: 'Default child message [workflow_dispatch]'
+        description: 'message'
         required: false
+        default: 'Default child message [workflow_dispatch]'
 
   workflow_call:
     inputs:
@@ -19,12 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MESSAGE: ${{ github.event.inputs.message }}
-      MESSAGE_FROM_PARENT: ${{ inputs.message }}
+      MESSAGE: ${{ github.event.inputs.message || inputs.message }}
 
     steps:
       - name: print message
-        run: |
-          echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE || env.MESSAGE_FROM_PARENT }}"
-          echo "env.MESSAGE is ${{ env.MESSAGE }}" |
-          echo "env.MESSAGE_FROM_PARENT is ${{ env.MESSAGE_FROM_PARENT }}"
+        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE }}"
