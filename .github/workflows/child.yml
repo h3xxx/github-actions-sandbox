@@ -19,8 +19,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MESSAGE: ${{ github.event.inputs.message | inputs.message }}
+      MESSAGE: ${{ github.event.inputs.message }}
+      MESSAGE_FROM_PARENT: ${{ inputs.message }}
 
     steps:
       - name: print message
-        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE }}"
+        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE || env.MESSAGE_FROM_PARENT }}"
