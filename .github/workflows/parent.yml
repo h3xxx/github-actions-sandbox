@@ -10,8 +10,8 @@ jobs:
       - name: print message
         run: echo "Hi, I'm a parent workflow."
   call-workflow:
-    uses: h3xxx/github-actions-sandbox/.github/workflows/child.yml
+    uses: h3xxx/github-actions-sandbox/.github/workflows/child.yml@main
   call-workflow-passing-data:
-    uses: h3xxx/github-actions-sandbox/.github/workflows/child.yml
+    uses: h3xxx/github-actions-sandbox/.github/workflows/child.yml@main
     with:
       message: mona
