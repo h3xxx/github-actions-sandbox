@@ -14,4 +14,4 @@ jobs:
   call-workflow-passing-data:
     uses: h3xxx/github-actions-sandbox/.github/workflows/child.yml@main
     with:
-      message: Chain call
+      message: Parent message [call-workflow-passing-data]

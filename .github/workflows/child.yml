@@ -4,28 +4,22 @@ on:
   workflow_dispatch:
     inputs:
       message:
-        description: 'Default message'
+        description: 'Default child message [workflow_dispatch]'
         required: false
 
   workflow_call:
     inputs:
       message:
-        description: 'Default message'
+        description: 'Default child message [workflow_call]'
         required: false
         type: string
-
-
-#  workflow_run:
-#    workflows: [ "Parent workflow" ]
-#    type:
-#      - complete
 
 jobs:
   execute:
     runs-on: ubuntu-latest
 
     env:
-      MESSAGE: ${{ github.event.inputs.message}} || ${{ inputs.message }}
+      MESSAGE: ${{ github.event.inputs.message || inputs.message }}
 
     steps:
       - name: print message
