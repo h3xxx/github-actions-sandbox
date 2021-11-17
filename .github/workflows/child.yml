@@ -24,4 +24,4 @@ jobs:
 
     steps:
       - name: print message
-        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE || env.MESSAGE_FROM_PARENT }}"
+        run: echo "Hi, I'm a child workflow. Message is ${{ env.MESSAGE | env.MESSAGE_FROM_PARENT }}"
