@@ -1,0 +1,27 @@
+name: Child 1 workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'message'
+        required: false
+        default: 'Default child 1 message [workflow_dispatch]'
+
+  workflow_call:
+    inputs:
+      message:
+        description: 'Default child 1 message [workflow_call]'
+        required: false
+        type: string
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+
+    env:
+      MESSAGE: ${{ github.event.inputs.message || inputs.message }}
+
+    steps:
+      - name: print message
+        run: echo "Hi, I'm a child 1 workflow. Message is ${{ env.MESSAGE }}"

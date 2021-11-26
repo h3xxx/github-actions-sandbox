@@ -12,7 +12,7 @@ on:
       test_value:
         description: 'Test value:'
         required: true
-        default: 'new usa'        
+        default: 'new usa'
 
 jobs:
   build:
