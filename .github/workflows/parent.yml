@@ -5,7 +5,7 @@ on:
 
   # https://jasonet.co/posts/scheduled-actions/
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/240 * * * *"
 
 jobs:
   execute:
