@@ -11,51 +11,34 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print uname
-        run: uname -a
 
   changedfiles:
     runs-on: ubuntu-latest
-    # Map a step output to a job output
     outputs:
-      all: ${{ steps.changes.outputs.all}}
-      js: ${{ steps.changes.outputs.js }}
+#      all: ${{ steps.changes.outputs.all}}
+#      js: ${{ steps.changes.outputs.js }}
+      updated_modules: ${{ steps.changes.outputs.updated_modules}}
     steps:
-      # Make sure we have some code to diff.
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Get changed files
         id: changes
-        # Set outputs using the command.
         run: |
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
-
-  jsFiles:
-    runs-on: ubuntu-latest
-    needs: changedfiles
-    if: ${{needs.changedfiles.outputs.js}}
-    steps:
-      - name: echo changed JS files
-#        run: echo ${{needs.changedfiles.outputs.js}}
-        run: |
-          for file in ${{ needs.changedfiles.outputs.js }}; do
-            echo "$file was changed"
-          done        
+           UPDATED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+           echo "::set-output name=updated_modules::$UPDATED_FILES"
+#          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+#          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
 
   allFiles:
     runs-on: ubuntu-latest
     needs: changedfiles
-    if: ${{needs.changedfiles.outputs.all}}
+    if: ${{needs.changedfiles.outputs.updated_modules}}
     steps:
       - name: echo changed ALL files
-#        run: echo ${{needs.changedfiles.outputs.all}}
+#        run: echo ${{needs.changedfiles.outputs.updated_modules}}
         run: |
-          for file in ${{ needs.changedfiles.outputs.all }}; do
+          for file in ${{ needs.changedfiles.outputs.updated_modules }}; do
             echo "$file was changed"
           done
