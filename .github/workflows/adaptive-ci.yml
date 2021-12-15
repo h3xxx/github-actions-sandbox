@@ -1,0 +1,16 @@
+name: Adaptive CI
+
+on:
+  push:
+    paths:
+      - 'src/**'
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print disk free space
+        run: df -h
+      - name: Print uname
+        run: uname -a
