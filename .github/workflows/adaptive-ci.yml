@@ -5,6 +5,10 @@ on:
     paths:
       - 'src/**'
     branches: [ main ]
+  pull_request:
+    paths:
+      - 'src/**'
+    branches: [ main ]
 
 jobs:
   build:
@@ -27,8 +31,8 @@ jobs:
         id: changes
         # Set outputs using the command.
         run: |
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.push.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.push.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
+          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
 
   lint1:
     runs-on: ubuntu-latest
