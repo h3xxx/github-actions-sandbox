@@ -36,22 +36,26 @@ jobs:
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
 
-  lint1:
+  jsFiles:
     runs-on: ubuntu-latest
-    # require the first job to have ran
     needs: changedfiles
-    # only run there are changed files
     if: ${{needs.changedfiles.outputs.js}}
     steps:
       - name: echo changed JS files
-        run: echo ${{needs.changedfiles.outputs.js}}
+#        run: echo ${{needs.changedfiles.outputs.js}}
+        run: |
+          for file in ${{ needs.changedfiles.outputs.js }}; do
+            echo "$file was changed"
+          done        
 
-  lint2:
+  allFiles:
     runs-on: ubuntu-latest
-    # require the first job to have ran
     needs: changedfiles
-    # only run there are changed files
     if: ${{needs.changedfiles.outputs.all}}
     steps:
       - name: echo changed ALL files
-        run: echo ${{needs.changedfiles.outputs.all}}
+#        run: echo ${{needs.changedfiles.outputs.all}}
+        run: |
+          for file in ${{ needs.changedfiles.outputs.all }}; do
+            echo "$file was changed"
+          done
