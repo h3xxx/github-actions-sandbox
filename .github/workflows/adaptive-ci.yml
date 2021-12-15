@@ -27,7 +27,12 @@ jobs:
         id: changes
         run: |
           UPDATED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)
+          echo "# 1"
           echo $UPDATED_FILES
+          echo "# 2"
+          for i in "${UPDATED_FILES[@]}"; do
+            echo "$i"
+          echo "# 9"
           echo "::set-output name=updated_modules::$UPDATED_FILES"
 #          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
 #          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
