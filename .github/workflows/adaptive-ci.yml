@@ -35,8 +35,8 @@ jobs:
 #            echo "$i"
 #          done
 #          echo "# 9"
-          echo "# A"
-          echo $UPDATED_FILES | grep -w -q "src/module-1"
+#          echo "# A"
+#          echo $UPDATED_FILES | grep -w -q "src/module-1"
           echo "# B"
           echo $UPDATED_FILES | grep -w -q "src/module-2"
           echo "# C"
