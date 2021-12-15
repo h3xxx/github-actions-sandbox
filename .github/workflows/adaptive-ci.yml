@@ -32,6 +32,7 @@ jobs:
           echo "# 2"
           for i in "${UPDATED_FILES[@]}"; do
             echo "$i"
+          done
           echo "# 9"
           echo "::set-output name=updated_modules::$UPDATED_FILES"
 #          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
