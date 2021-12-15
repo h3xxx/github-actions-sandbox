@@ -1,18 +1,14 @@
-name: Adaptive CI
+name: Module 1 Adaptive CI
 
 on:
   push:
     paths:
-      - 'src/**'
+      - 'src/module-1/**'
     branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print "env"
-        run: echo ${{ env }}
-      - name: Print disk free space
-        run: df -h
       - name: Print uname
         run: uname -a
