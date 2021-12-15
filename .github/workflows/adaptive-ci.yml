@@ -26,7 +26,7 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-          UPDATED_MODULES=()
+#          UPDATED_MODULES=()
           UPDATED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)
 #          echo "# 1"
 #          echo $UPDATED_FILES
