@@ -26,6 +26,7 @@ jobs:
       - name: Install jq
         run: |
           sudo apt-get install jq -y
+          apt show tesseract-ocr
       - name: Process response
         run: |
           TEST_VALUE=$(echo "$TEST_VALUE" | sed "s/usa/uk/")
