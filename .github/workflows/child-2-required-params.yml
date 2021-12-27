@@ -1,0 +1,30 @@
+name: Child 2 workflow (required params)
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'message'
+        required: true
+        default: 'Default child 2 message (required params) [workflow_dispatch]'
+
+  workflow_call:
+    inputs:
+      message:
+        description: 'Default child 2 message (required params) [workflow_call]'
+        required: true
+        type: string
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+
+    env:
+      MESSAGE: ${{ github.event.inputs.message || inputs.message }}
+
+    steps:
+      - name: print message
+        run: |
+          echo "workflow_dispatch/message: ${{ github.event.inputs.message }}"
+          echo "workflow_call/message: ${{ inputs.message }}"
+          echo "Hi, I'm a child 2 workflow (required params). Message is ${{ env.MESSAGE }}"

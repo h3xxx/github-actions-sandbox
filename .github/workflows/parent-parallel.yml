@@ -17,3 +17,7 @@ jobs:
     uses: h3xxx/github-actions-sandbox/.github/workflows/child-2.yml@main
     with:
       message: Parent message 2 [call-workflow-passing-data]
+  call-workflow-2-required-params-passing-data:
+    uses: h3xxx/github-actions-sandbox/.github/workflows/child-2-required-params.yml@main
+    with:
+      message: Parent message 3 [call-workflow-passing-data]
