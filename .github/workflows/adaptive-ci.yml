@@ -3,10 +3,6 @@ name: Module 1 Adaptive CI
 # https://github.com/github/view_component/actions/runs/1539034766/workflow
 
 on:
-  push:
-    paths:
-      - 'src/**'
-    branches: [ main ]
   pull_request:
     paths:
       - 'src/**'
@@ -17,8 +13,6 @@ jobs:
   changedfiles:
     runs-on: ubuntu-latest
     outputs:
-#      all: ${{ steps.changes.outputs.all}}
-#      js: ${{ steps.changes.outputs.js }}
       updated_modules: ${{ steps.changes.outputs.updated_modules}}
     steps:
       - name: Checkout repository
@@ -28,24 +22,8 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-#          UPDATED_MODULES=()
           UPDATED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)
-#          echo "# 1"
-#          echo $UPDATED_FILES
-#          echo "# 2"
-#          for i in "${UPDATED_FILES[@]}"; do
-#            echo "$i"
-#          done
-#          echo "# 9"
-#          echo "# A"
-#          echo $UPDATED_FILES | grep -w -q "src/module-1"
-#          echo "# B"
-#          echo $UPDATED_FILES | grep -w -q "src/module-2"
-#          echo "# C"
-#          echo $UPDATED_FILES | grep -w -q "src/module-3"
           echo "::set-output name=updated_modules::$UPDATED_FILES"
-#          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-#          echo "::set-output name=js::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
 
   allFiles:
     runs-on: ubuntu-latest
@@ -53,7 +31,6 @@ jobs:
     if: ${{needs.changedfiles.outputs.updated_modules}}
     steps:
       - name: echo changed ALL files
-#        run: echo ${{needs.changedfiles.outputs.updated_modules}}
         run: |
           for file in ${{ needs.changedfiles.outputs.updated_modules }}; do
             echo "$file was changed"
