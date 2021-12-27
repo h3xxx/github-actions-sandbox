@@ -42,7 +42,7 @@ jobs:
     if: ${{"src/module-1" in needs.changedfiles.outputs.updated_modules}}
     steps:
       - name: echo Module 1 CI started
-        run echo OK
+        run: echo OK
 
   module2CI:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
     if: ${{"src/module-2" in needs.changedfiles.outputs.updated_modules}}
     steps:
       - name: echo Module 2 CI started
-        run echo OK
+        run: echo OK
 
   module3CI:
     runs-on: ubuntu-latest
@@ -58,4 +58,4 @@ jobs:
     if: ${{"src/module-3" in needs.changedfiles.outputs.updated_modules}}
     steps:
       - name: echo Module 3 CI started
-        run echo OK
+        run: echo OK
