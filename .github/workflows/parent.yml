@@ -5,7 +5,8 @@ on:
 
   # https://jasonet.co/posts/scheduled-actions/
   schedule:
-    - cron: "12 * * * *"
+    # Every Monday at 12PM UTC
+    - cron: "0 12 * * 1"
 
 jobs:
   execute:
