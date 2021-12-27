@@ -35,3 +35,24 @@ jobs:
           for file in ${{ needs.changedfiles.outputs.updated_modules }}; do
             echo "$file was changed"
           done
+
+  module1CI:
+    runs-on: ubuntu-latest
+    needs: changedfiles
+    if: ${{"src/module-1" in needs.changedfiles.outputs.updated_modules}}
+    steps:
+      - name: echo Module 1 CI started
+
+  module2CI:
+    runs-on: ubuntu-latest
+    needs: changedfiles
+    if: ${{"src/module-2" in needs.changedfiles.outputs.updated_modules}}
+    steps:
+      - name: echo Module 2 CI started
+
+  module3CI:
+    runs-on: ubuntu-latest
+    needs: changedfiles
+    if: ${{"src/module-3" in needs.changedfiles.outputs.updated_modules}}
+    steps:
+      - name: echo Module 3 CI started
