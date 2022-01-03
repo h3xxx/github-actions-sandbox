@@ -23,5 +23,7 @@ jobs:
       message: Parent message 3 [call-workflow-passing-data]
   call-workflow-with-secret:
     uses: h3xxx/github-actions-sandbox/.github/workflows/workflow-with-secret.yml@main
+    secrets:
+      SOME_SECRET: ${{ secrets.SOME_SECRET }}
     with:
       message: Parent message 4 [call-workflow-passing-data]
