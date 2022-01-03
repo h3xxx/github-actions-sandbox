@@ -21,3 +21,7 @@ jobs:
     uses: h3xxx/github-actions-sandbox/.github/workflows/child-2-required-params.yml@main
     with:
       message: Parent message 3 [call-workflow-passing-data]
+  call-workflow-with-secret:
+    uses: h3xxx/github-actions-sandbox/.github/workflows/workflow-with-secret.yml@main
+    with:
+      message: Parent message 4 [call-workflow-passing-data]
