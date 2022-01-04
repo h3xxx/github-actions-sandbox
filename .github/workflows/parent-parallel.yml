@@ -26,4 +26,5 @@ jobs:
     with:
       message: Parent message 4 [call-workflow-passing-data]
     secrets:
+      SOME_SECRET: ${{ secrets.SOME_SECRET }}
       SOME_SECRET_1: "0987654321"
