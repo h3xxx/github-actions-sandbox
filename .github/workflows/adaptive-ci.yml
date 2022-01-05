@@ -39,7 +39,9 @@ jobs:
   module1CI:
     runs-on: ubuntu-latest
     needs: changedfiles
-    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-1') }}
+    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-1/app') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-1/examples') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-1/test') }}
     steps:
       - name: echo Module 1 CI started
         run: echo OK
@@ -47,7 +49,9 @@ jobs:
   module2CI:
     runs-on: ubuntu-latest
     needs: changedfiles
-    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-2') }}
+    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-2/app') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-2/examples') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-2/test') }}
     steps:
       - name: echo Module 2 CI started
         run: echo OK
@@ -55,7 +59,9 @@ jobs:
   module3CI:
     runs-on: ubuntu-latest
     needs: changedfiles
-    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-3') }}
+    if: ${{ contains(needs.changedfiles.outputs.updated_modules, 'src/module-3/app') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-3/examples') ||
+      contains(needs.changedfiles.outputs.updated_modules, 'src/module-3/test') }}
     steps:
       - name: echo Module 3 CI started
         run: echo OK
