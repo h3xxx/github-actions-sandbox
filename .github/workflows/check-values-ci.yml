@@ -35,6 +35,13 @@ jobs:
             console.log(`repo: ${context.repo.repo}`);
             console.log(`pull_number: ${context.payload.pull_request.number}`);
             
+            console.log('github.rest');
+            console.log(github.rest);
+            
+            console.log('github.rest.issues');
+            console.log(github.rest.issues);
+            
+            /*
             const obj1 = {
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -42,6 +49,7 @@ jobs:
             };
 
             const { data: pullRequest } = await github.pulls.get(obj1);
+            */
             
             console.log('222a');
             
