@@ -50,11 +50,11 @@ jobs:
             console.log(obj1);
 
             //const { data: pullRequest } = await github.pulls.get(obj1);
-            const { data: pullRequest } = await github.rest.issues.get(obj1);
+            //const { data: pullRequest } = await github.rest.issues.get(obj1);
             
-            console.log('222a data1');
+            //console.log('222a data1');
             
-            console.log(data);
+            //console.log(data);
             
             console.log('222b');
 
