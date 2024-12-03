@@ -58,7 +58,13 @@ jobs:
             
             console.log('222b');
 
-            const { data: files } = await github.pulls.listFiles(obj1);
+            //const { data: files } = await github.pulls.listFiles(obj1);
+            
+            console.log('333 aaaa');
+            
+            console.log(github.pulls);
+            
+            const { data: files } = await github.pulls.listFiles({owner: context.repo.owner, repo: context.repo.repo, pull_number: context.payload.pull_request.number});
             
             console.log('333 data2');
             
