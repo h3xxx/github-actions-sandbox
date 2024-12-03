@@ -62,9 +62,9 @@ jobs:
             
             console.log('333 aaaa');
             
-            console.log(github.pulls);
+            console.log(github.rest.pulls);
             
-            const { data: files } = await github.pulls.listFiles({owner: context.repo.owner, repo: context.repo.repo, pull_number: context.payload.pull_request.number});
+            const { data: files } = await github.rest.pulls.listFiles({owner: context.repo.owner, repo: context.repo.repo, pull_number: context.payload.pull_request.number});
             
             console.log('333 data2');
             
