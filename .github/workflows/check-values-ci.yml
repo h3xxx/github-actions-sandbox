@@ -21,49 +21,48 @@ jobs:
             //const xgithub = require('@actions/github');
             //const xcontext = github.context;
 
-            console.log('github:');
-            console.log(github);
+            //console.log('github:');
+            //console.log(github);
             
-            console.log('context:');
-            console.log(context);
+            //console.log('context:');
+            //console.log(context);
             
             console.log('111');
             
             console.log('obj1');
             
-            console.log(`owner: ${context.repo.owner}`);
-            console.log(`repo: ${context.repo.repo}`);
-            console.log(`pull_number: ${context.payload.pull_request.number}`);
+            //console.log(`owner: ${context.repo.owner}`);
+            //console.log(`repo: ${context.repo.repo}`);
+            //console.log(`pull_number: ${context.payload.pull_request.number}`);
             
-            console.log('github.rest');
-            console.log(github.rest);
+            //console.log('github.rest');
+            //console.log(github.rest);
             
-            console.log('github.rest.issues');
-            console.log(github.rest.issues);
+            //console.log('github.rest.issues');
+            //console.log(github.rest.issues);
             
-            /*
             const obj1 = {
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             };
-
-            const { data: pullRequest } = await github.pulls.get(obj1);
-            */
             
-            console.log('222a');
+            console.log(obj1);
+
+            //const { data: pullRequest } = await github.pulls.get(obj1);
+            const { data: pullRequest } = await github.pulls.get(obj1);
+            
+            console.log('222a data1');
             
             console.log(data);
             
             console.log('222b');
 
-            const { data: files } = await github.pulls.listFiles({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-            });
+            const { data: files } = await github.pulls.listFiles(obj1);
             
-            console.log('333');
+            console.log('333 data2');
+            
+            console.log(files);
 
             const changedFiles = files.map(file => file.filename);
             console.log('Changed files:', changedFiles);
