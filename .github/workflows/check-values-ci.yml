@@ -18,8 +18,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const xgithub = require('@actions/github');
-            const xcontext = github.context;
+            //const xgithub = require('@actions/github');
+            //const xcontext = github.context;
 
             console.log('github:');
             console.log(github);
