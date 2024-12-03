@@ -31,6 +31,10 @@ jobs:
             
             console.log('obj1');
             
+            console.log(`owner: ${context.repo.owner}`);
+            console.log(`repo: ${context.repo.repo}`);
+            console.log(`pull_number: ${context.payload.pull_request.number}`);
+            
             const obj1 = {
               owner: context.repo.owner,
               repo: context.repo.repo,
