@@ -26,18 +26,32 @@ jobs:
             
             console.log('context:');
             console.log(context);
-
-            const { data: pullRequest } = await github.pulls.get({
+            
+            console.log('111');
+            
+            console.log('obj1');
+            
+            const obj1 = {
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
-            });
+            };
+
+            const { data: pullRequest } = await github.pulls.get(obj1);
+            
+            console.log('222a');
+            
+            console.log(data);
+            
+            console.log('222b');
 
             const { data: files } = await github.pulls.listFiles({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             });
+            
+            console.log('333');
 
             const changedFiles = files.map(file => file.filename);
             console.log('Changed files:', changedFiles);
