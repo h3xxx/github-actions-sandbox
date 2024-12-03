@@ -15,11 +15,14 @@ jobs:
     steps:
       - name: Determine Changed Files
         id: changed-files
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const xgithub = require('@actions/github');
-            const context = github.context;
+            const xcontext = github.context;
+
+            console.log('github:');
+            console.log(github);
             
             console.log('context:');
             console.log(context);
