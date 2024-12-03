@@ -2,10 +2,10 @@ ExampleValue1:
   Input: '{"boxName": "sa-1_", "boxType": "Sa", "regionIsoCode": "UK", "tabNames": "abcd"}'
 
 ExampleValue2:
-  Input: '{"boxName": "sa-2", "boxType": "Sa.", "regionIsoCode": "UK", "tabNames": "abcd"}'
+  Input: '{"boxName": "sa-2", "boxType": "Sa.-", "regionIsoCode": "UK", "tabNames": "abcd"}'
 
 ExampleValue3:
-  Input: '{"boxName": "sa-3", "boxType": "Sa", "regionIsoCode": "UK", "tabNames": "abcd"}'
+  Input: '{"boxName": "sa-3", "boxType": "Sa.", "regionIsoCode": "UK", "tabNames": "abcd"}'
 
 ExampleValue4:
   Input: '{"boxName..": "sa-4", "boxType": "Sa", "regionIsoCode": "UK", "tabNames": "abcd"}'
