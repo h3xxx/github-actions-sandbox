@@ -1,0 +1,42 @@
+# Check values CI workflow
+
+name: Check values CI workflow
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine Changed Files
+        id: changed-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const github = require('@actions/github');
+            const context = github.context;
+
+            const { data: pullRequest } = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const { data: files } = await github.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const changedFiles = files.map(file => file.filename);
+            console.log('Changed files:', changedFiles);
+            return { changedFiles };
+
+      - name: Output Changed Files
+        run: |
+          echo "Changed files: ${{ steps.changed-files.outputs.changedFiles }}"
